@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	<hibernate-configuration>
+	<!--配置会话工厂  -->
+		<session-factory>
+			<!-- jdbc基本连接参数 -->
+			<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+			<property name="hibernate.connection.url">jdbc:mysql://localhost/hibernate_day2</property>
+			<property name="hibernate.connection.username">root</property>
+			<property name="hibernate.connection.password">123456</property>
+			<!-- 数据库方言 -->
+			<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+			<!-- 在控制台输出sql -->
+			<property name="hibernate.show_sql">true</property>
+			<!-- 格式化sql语句 -->
+			<property name="hibernate.format_sql">true</property>
+			<!-- DDL策略-->
+			<!--
+				update(常用)：当数据库中没有customer表时，依然可以执行，它会自动创建cust.....omer表 ，当表存在时执行更新
+				create-drop:执行结束后删除这个表
+				validate:检查，前提表存在，报异常
+			-->
+			<property name="hibernate.hbm2ddl.auto">update</property>
+			<!-- 配置事务自动提交 -->
+			<property name="hibernate.connection.autocommit">false</property>
+			<!-- 注册hbm映射文件 -->
+			 <mapping resource="cn/itcase/daomain/User.hbm.xml"/> 
+			 <mapping resource="cn/itcase/many2one/Customer.hbm.xml"/> 
+			 <mapping resource="cn/itcase/many2one/Order.hbm.xml"/> 
+			 <mapping resource="cn/itcase/manytomany/Student.hbm.xml"/> 
+			 <mapping resource="cn/itcase/manytomany/Course.hbm.xml"/> 
+		</session-factory>
+	</hibernate-configuration>
